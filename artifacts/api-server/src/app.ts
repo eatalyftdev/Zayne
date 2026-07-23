@@ -4,14 +4,7 @@ import type { IncomingMessage, ServerResponse } from "node:http";
 import router from "./routes";
 import { logger } from "./lib/logger";
 
-// pino-http is a CJS package; under "moduleResolution: bundler" its default
-// export lacks call signatures in the TS type system. Import the type
-// separately and cast so tsc is satisfied while esbuild handles the interop.
-import type { HttpLogger, Options as PinoHttpOptions } from "pino-http";
-import pinoHttpImport from "pino-http";
-const pinoHttp = pinoHttpImport as unknown as (
-  opts: PinoHttpOptions,
-) => HttpLogger;
+import { pinoHttp } from "pino-http";
 
 const app: Express = express();
 
