@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "Zayne Portfolio"
+version = "1.0.0"
+id = "artifacts/zayne-portfolio"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24822
+
+[services.development]
+run = "pnpm --filter @workspace/zayne-portfolio run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/zayne-portfolio", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/zayne-portfolio/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24822"
+BASE_PATH = "/"

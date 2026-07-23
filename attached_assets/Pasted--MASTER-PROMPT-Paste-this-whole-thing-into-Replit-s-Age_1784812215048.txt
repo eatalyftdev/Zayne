@@ -1,0 +1,105 @@
+# MASTER PROMPT — Paste this whole thing into Replit's Agent chat
+
+---
+
+**ACT AS:** Senior Creative Web Designer & Creative Developer (Three.js Expert).
+
+**OBJECTIVE:** Rebuild my existing single-page site into a high-impact, interactive, fully functional site using **Next.js 15 (App Router), TypeScript, Tailwind CSS, Framer Motion, and Three.js via React Three Fiber (`@react-three/fiber`) + `@react-three/drei`**.
+
+Do not ask me the interview questions — they're answered below. Go straight to the Design Phase, then Technical Safeguards, then Coding Phase.
+
+---
+
+## 1. PROJECT ANSWERS (pre-filled — do not re-ask)
+
+- **Project type:** Personal founder portfolio / professional brand site
+- **Name:** Zayne
+- **Purpose:** Personal site for a Cameroonian tech founder running four companies at once — Founder of EataLyft (multi-service logistics/mobility/commerce platform), CTO of ZeeGo (logistics platform), Brand & Social Media Manager at Songtai Life International (wellness network-marketing), and Founder/CEO of AJ Tech Company Ltd (the studio behind all of it). The site's single job: convince a partner, collaborator, or press contact in 10 seconds that this is a serious, technically credible, multi-venture operator based in Cameroon — not a template portfolio.
+- **Style preference:** **Immersive Dark — "Logistics Network."** Not generic cyberpunk, not generic sci-fi. The 3D background should read as a live dispatch/network system: glowing route lines and connection nodes drifting in 3D space, like a real-time logistics network map over Cameroon, not abstract space particles. This ties the futuristic visual language directly to what the companies actually do (routing, tracking, dispatch).
+- **Language:** English
+
+---
+
+## 2. DESIGN PHASE
+
+**Color system (carry these over exactly — do not substitute a default palette):**
+- Background: deep navy-black `#0A0F1A`
+- Panel/surface: `#111826`
+- Ink (primary text on dark): `#F1F3F3`
+- Secondary text: `#8B96A5`
+- Accent — amber (CTAs, live/active states): `#FF7A1A`
+- Accent — teal (route lines, data, node glow): `#14B8AE`
+- Hairline/borders: `rgba(255,255,255,0.08)`
+
+**Typography (keep from the existing brand system):**
+- Display/headings: `Space Grotesk`
+- Body: `Inter`
+- Mono (UID tags, coordinates, timestamps — used throughout the current site for dispatch-log styling): `IBM Plex Mono`
+
+**WebGL background concept:**
+A particle/line network system representing a live logistics graph — nodes (glowing points, amber for "active," teal for "standard") connected by thin animated lines that pulse with light traveling along them, like packets moving through a dispatch network. Nodes should drift slowly and react to mouse position (parallax/attraction, not violent movement). Avoid: generic starfields, generic distorted spheres, generic "digital rain," or anything that reads as decorative rather than as a network.
+
+---
+
+## 3. TECHNICAL SAFEGUARDS (MANDATORY — follow exactly)
+
+**3D & WebGL Integration:**
+- Use the Three.js ecosystem via `@react-three/fiber` and `@react-three/drei`. No CSS-simulated 3D, no static images pretending to be 3D.
+- Build the network background using `Points`/`InstancedMesh` for nodes and animated `Line`/`shaderMaterial` for connections — not a single default sphere with `MeshDistortMaterial`.
+- Use `ShaderMaterial` or `drei`'s line glow techniques so the connection lines have real luminosity, not flat color.
+- Lighting: `ambientLight` at low intensity plus one or two `pointLight`s near active nodes for depth. Use `Environment` from drei only if it doesn't wash out the dark background.
+- Interaction: the network MUST respond to mouse movement — camera parallax or node drift lerping toward cursor position, subtle, not disorienting.
+
+**Layout & Z-Index:**
+- `<Canvas>` is `fixed inset-0 z-[-1]` (or `z-0` with content above).
+- All content sections use `relative z-10` (or higher) and `bg-transparent`, so the WebGL background is visible through them.
+- Only the footer/contact section may use a solid panel background if needed for legibility — everything else stays transparent.
+
+**Typography & Contrast:**
+- All text must pass WCAG AA contrast against the dark background at whatever opacity it's shown at. Test the hero headline and body copy specifically since they'll sit directly over the moving background.
+
+**Performance:**
+- Wrap all 3D content in `<Suspense>` with a lightweight fallback (no spinner over a dark background — use a simple fade-in).
+- Cap node/particle count so the scene stays smooth on mid-range mobile (target: no visible frame drop on a mid-tier Android phone).
+- Pause or simplify the animation when the tab is not visible (`document.visibilitychange`).
+- Respect `prefers-reduced-motion`: if set, freeze the network to a static state and disable camera parallax.
+
+---
+
+## 4. CONTENT — DO NOT INVENT NEW COPY
+
+Carry over the existing site's real content and structure exactly (do not generate placeholder company descriptions or generic portfolio copy). Sections, in order:
+
+1. **Hero** — Tag: "FOUNDER · CM-BDA · ACTIVE". Headline: "Building the infrastructure Cameroon runs on." Subhead: "Founder-led logistics, mobility and commerce systems — architected, shipped, and grown across four companies, not delegated to a deck." CTAs: "See the companies" / "Selected work."
+2. **Stat strip** — 4 companies led · 9+ role types architected · 1 unified UID system · CM home base.
+3. **About** — bio paragraphs covering all four roles (Founder EataLyft, CTO ZeeGo, Brand/Social Songtai Life, Founder/CEO AJ Tech Company Ltd) plus a "Working stack" panel: Next.js 15/TypeScript, Firebase, Supabase, WhatsApp Cloud API, Tailwind CSS, Vercel/Replit.
+4. **Companies** — 4 cards: EataLyft (Founder), ZeeGo (CTO), Songtai Life International (Brand & Social Media Manager), AJ Tech Company Ltd (Founder & CEO) — use the descriptions from the current site.
+5. **Selected work** — dispatch-log style entries, mono UID tags (EL-ARCH-0001, EL-COMM-0002, EL-INFRA-0003): role architecture across 9 user types, WhatsApp Cloud API integration (Meta Graph API v23.0), Firebase auth migration with Supabase geolocation retained.
+6. **Skills** — three columns: Product & Architecture / Engineering / Brand & Growth (use existing list items).
+7. **Contact/footer** — email, LinkedIn, GitHub links, Bamenda coordinates.
+
+---
+
+## 5. CODING PHASE
+
+- Framework: Next.js 15, App Router, TypeScript, `"use client"` on any component using hooks/R3F.
+- Structure as proper components, not one giant file: `components/NetworkBackground.tsx` (the R3F canvas), `components/Hero.tsx`, `components/About.tsx`, `components/Companies.tsx`, `components/Work.tsx`, `components/Skills.tsx`, `components/Contact.tsx`, assembled in `app/page.tsx`.
+- Icons: `lucide-react`.
+- Motion: Framer Motion for scroll-reveal on content sections (fade + slight translateY, staggered), matching the existing site's reveal behavior.
+- Install: `three @react-three/fiber @react-three/drei framer-motion lucide-react`.
+- Confirm the build runs (`npm run dev`) and the 3D background renders before considering the task done.
+
+---
+
+# AFTER REPLIT GENERATES THE CODE — DEPLOY CHECKLIST
+
+Once the Agent finishes and the preview looks right:
+
+1. **Test on mobile viewport first** inside Replit's preview — WebGL backgrounds break more often on mobile than desktop. Ask the Agent to fix any frame-rate or layout issues there before deploying.
+2. **Check `prefers-reduced-motion`** actually freezes the animation — toggle it in your browser's dev tools to confirm.
+3. In Replit, open the **Deploy** panel (left sidebar or top-right "Deploy" button).
+4. Choose **Autoscale** deployment for a Next.js app (not Static — Static won't run the Next.js server/SSR correctly).
+5. Set the **build command** to `next build` and the **run command** to `next start` if Replit doesn't detect them automatically.
+6. Add any environment variables the site needs (none required for this build unless you've wired up a contact form backend).
+7. Click **Deploy**. Replit will give you a `*.replit.app` URL — test it live, then point your custom domain (once purchased, per the domain recommendations from earlier) to it via Replit's custom domain settings under the Deploy panel.
+8. Re-run Lighthouse (Chrome DevTools) on the deployed URL and check Performance specifically — WebGL scenes can tank the score. If it's below ~85, ask the Agent to reduce particle count or lower devicePixelRatio cap.
