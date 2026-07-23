@@ -14,11 +14,7 @@
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  
-  --color-accent-amber: var(--accent-amber);
-  --color-accent-teal: var(--accent-teal);
+  --color-accent-green: var(--accent-green);
 
   --font-sans: 'Inter', sans-serif;
   --font-display: 'Space Grotesk', sans-serif;
@@ -31,35 +27,30 @@
 }
 
 :root {
-  --background: #0A0F1A;
-  --panel: #111826;
-  --foreground: #F1F3F3;
-  --secondary-foreground: #8B96A5;
-  --border: rgba(255, 255, 255, 0.08);
-  --primary: #FF7A1A;
-  --primary-foreground: #0A0F1A;
-  --secondary: #14B8AE;
-  --secondary-foreground: #0A0F1A;
+  --background: #FAFAFA;
+  --panel: #FFFFFF;
+  --foreground: #111827;
+  --secondary-foreground: #4B5563;
+  --border: #E5E7EB;
   
-  --accent-amber: #FF7A1A;
-  --accent-teal: #14B8AE;
+  --primary: #16A34A;
+  --primary-foreground: #FFFFFF;
+  
+  --accent-green: #16A34A;
 
-  --radius: 0.5rem;
+  --radius: 0.75rem;
 }
 
 .dark {
-  --background: #0A0F1A;
-  --panel: #111826;
-  --foreground: #F1F3F3;
-  --secondary-foreground: #8B96A5;
-  --border: rgba(255, 255, 255, 0.08);
-  --primary: #FF7A1A;
-  --primary-foreground: #0A0F1A;
-  --secondary: #14B8AE;
-  --secondary-foreground: #0A0F1A;
-  
-  --accent-amber: #FF7A1A;
-  --accent-teal: #14B8AE;
+  /* Defaulting to light, but keep variables so it doesn't break if toggled */
+  --background: #FAFAFA;
+  --panel: #FFFFFF;
+  --foreground: #111827;
+  --secondary-foreground: #4B5563;
+  --border: #E5E7EB;
+  --primary: #16A34A;
+  --primary-foreground: #FFFFFF;
+  --accent-green: #16A34A;
 }
 
 @layer base {
@@ -72,7 +63,7 @@
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-tight;
+    @apply font-display tracking-tight text-foreground;
   }
 }
 

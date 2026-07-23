@@ -1,0 +1,102 @@
+# MASTER PROMPT — Paste into your AI builder chat (Replit Agent), then attach the reference image
+
+---
+
+**ACT AS:** Senior Product Designer & Frontend Engineer.
+
+**OBJECTIVE:** Rebuild the existing `artifacts/zayne-portfolio` codebase into a complete, multi-page personal portfolio site for Zayne, using the **attached reference image** as the primary visual and interaction reference — adapted from a SaaS product landing page into a founder portfolio. Do not start a new project or a new tech stack — this is a redesign and expansion of the existing app.
+
+**Reference image:** I'm attaching a screenshot of a SaaS landing page (product: an invoicing/business tool). Use it for: overall visual language (color, spacing, typography scale, card style, shadow style), the browser-chrome mockup pattern used to display product screenshots, the alternating image-left/image-right feature section layout, the 3-column icon feature grid, the photo-grid section pattern, and the dark CTA panel near the footer. **Do not copy its content, product, or copy — only its design system and layout patterns**, applied to Zayne's real content below.
+
+---
+
+## 1. EXISTING CODEBASE — build within this, don't replace it
+
+This is a Vite + React + TypeScript project at `artifacts/zayne-portfolio` in a pnpm monorepo. Already in place:
+- **Styling:** Tailwind CSS, shadcn/ui components (`components.json` configured, `src/components/ui/`)
+- **Animation:** `framer-motion` (already a dependency — use it, don't add a competing animation library)
+- **3D:** `three`, `@react-three/fiber`, `@react-three/drei` (already used in `src/components/NetworkBackground.tsx` — a dark dispatch/network canvas background)
+- **Routing:** `wouter` (already a dependency, currently underused — this project needs to become properly multi-page using it)
+- **Charts:** `recharts` (already a dependency — use for the stats/dashboard-style section)
+- **Existing components to redesign, not discard:** `Hero.tsx`, `About.tsx`, `Companies.tsx`, `Contact.tsx`, `Nav.tsx`, `Skills.tsx`, `StatStrip.tsx`, `Work.tsx`, `NetworkBackground.tsx`, `App.tsx`, `index.css`
+
+**Important design-system conflict to resolve:** the current site uses a dark navy background with a glowing network canvas. The reference image is a **light, off-white, airy design**. Since we're now following the reference's visual language, either (a) rework `NetworkBackground.tsx` into a much more subtle, light-mode-appropriate accent (soft, low-opacity line/particle network only behind the hero mockup, on a light background), or (b) replace it with a blurred organic color-swoosh graphic (SVG/CSS gradient blob) matching the reference image's hero background treatment, whichever renders better. Don't keep the current dark immersive canvas as the whole-page background — it will clash with the new light design.
+
+---
+
+## 2. DESIGN TOKENS — extract from the reference image and apply exactly
+
+- **Background:** off-white / soft cream (not pure white)
+- **Text:** near-black for headlines, mid-gray for body/secondary text
+- **Accent:** a single vivid, fresh accent color (green in the reference) — Zayne can swap this for a brand color later, but use one confident accent color consistently, the way the reference does, not multiple competing accents
+- **Cards:** white background, generous rounded corners (rounded-2xl/3xl), soft diffused shadow, thin hairline border
+- **Buttons:** primary = solid dark pill button with a small leading/trailing icon; secondary = ghost/outline pill
+- **Typography:** large, bold, tight-tracking headlines; generous line-height on body copy; small uppercase mono/label "eyebrow" tags above section headings (this pattern already exists in the current site — keep it)
+- **Product/screenshot mockups:** framed in a browser-chrome container (dot controls top-left, rounded window, subtle shadow, slight tilt or floating position) — reuse this pattern for any screenshots of Zayne's actual products (EataLyft dashboard, WhatsApp CRM inbox, etc. — use realistic placeholder UI if real screenshots aren't available yet)
+- **Section rhythm:** generous vertical whitespace between sections, alternating full-width and contained-width layouts, icon + short-label 3-column grids for feature/skill lists
+
+---
+
+## 3. SITE STRUCTURE — make this properly multi-page using `wouter`
+
+Convert the current single-page layout into these routes:
+
+- **`/` (Home)** — condensed hero, 3-column "what I do" grid, companies preview strip, 1-2 highlight case studies, stats section, CTA to `/contact`
+- **`/about`** — full bio (all four roles), the professional photo section (see §4), working stack panel
+- **`/companies`** — all 4 companies in full detail (EataLyft, ZeeGo, Songtai Life International, AJ Tech Company Ltd), each styled like the reference's alternating feature sections with a mockup/screenshot on one side and bullet-point details on the other
+- **`/work`** — selected work / case studies, expanded from the current dispatch-log style entries into full reference-style feature sections (role architecture, WhatsApp Cloud API integration, Firebase/Supabase migration) — each with a headline, description, bullet list of specifics, and a mockup or diagram
+- **`/contact`** — contact info, email, socials
+
+Use Framer Motion's `AnimatePresence` for smooth page-transition fades between routes. Keep `Nav.tsx` persistent across all pages, styled per the reference's top nav (logo left, links center, CTA button right — repurpose "Get Started" as "Contact" or "Let's talk").
+
+---
+
+## 4. NEW SECTION — professional photo (cutout, no background)
+
+Add a prominent section (hero of `/about`, or a dedicated block on `/`) built around a **transparent PNG portrait photo** that Zayne will drop in separately. Build this now with a placeholder so it's ready the moment the real photo is added:
+
+- Reserve the image at `public/professional-photo.png` (transparent background)
+- Layout: large portrait (upper body), positioned so it visually overlaps a colored accent shape or blurred gradient blob behind it (echo the reference image's green swoosh graphic, but as a smaller shape sitting behind/around the photo, not a full-page background)
+- Add a soft drop-shadow under the photo so it reads as "cut out" rather than pasted flat
+- Until the real photo is uploaded, render a subtle placeholder (a soft gradient silhouette shape in the same position/size) so the layout is visibly correct and just needs the image swapped in
+- Pair this with a short callout — name, current role line, and a one-line mission statement (reuse copy from the brand foundation, don't invent new)
+
+---
+
+## 5. COMPANIES / "WORKED WITH" SECTION
+
+Adapt the reference's photo-grid section (the 4-photo customer grid) into a **4-card grid for Zayne's own companies** — EataLyft, ZeeGo, Songtai Life International, AJ Tech Company Ltd — each card showing a role tag, company name, one-line description, and a link. This already exists in `Companies.tsx` — restyle it to match the reference's card treatment (rounded image/color block top, label below) rather than the current dispatch-card style.
+
+---
+
+## 6. CONTENT — reuse real content, do not invent generic copy
+
+Pull bios, role descriptions, and work details from the existing site content already in `Hero.tsx`, `About.tsx`, `Companies.tsx`, and `Work.tsx` — expand and restyle them into the new layout, don't replace them with generic portfolio placeholder text. If a new section needs copy that doesn't exist yet (e.g., a `/contact` page intro line), write something consistent with the existing tone: direct, specific, proof-over-promises, not generic startup-speak.
+
+---
+
+## 7. ANIMATION SPEC (Framer Motion)
+
+- Scroll-triggered reveal (fade + slight translateY, staggered by ~80-100ms per item) on all section content and grid items — this already exists in some form, extend it site-wide
+- Hero mockup/photo: a very subtle continuous float animation (small y-axis oscillation, slow, 4-6s loop) — not distracting
+- Card grids (companies, work, skills): stagger children on scroll into view
+- Route transitions: fade + slight slide via `AnimatePresence`
+- Nav: subtle background blur/opacity change on scroll (already likely present — keep/refine)
+- Respect `prefers-reduced-motion` — freeze/disable non-essential motion when set
+
+---
+
+## 8. WHAT TO DO WITH GAPS
+
+Where the reference image has a pattern that doesn't map to a personal portfolio (e.g., its testimonials carousel, its automation/dark panel, its expense chart), either: (a) skip it if it has no honest equivalent, or (b) adapt it meaningfully — e.g., the dark bottom panel could become a "Currently building" or "What's next" teaser section instead of a fake testimonial. Don't fabricate testimonials, client logos, or metrics that don't exist. Flag anything you're unsure how to adapt rather than inventing placeholder content that looks real.
+
+---
+
+## 9. BUILD CHECKLIST BEFORE YOU'RE DONE
+
+- [ ] All 5 routes work and are reachable from `Nav.tsx`
+- [ ] `npm run dev` runs clean, no console errors
+- [ ] `npm run build` succeeds
+- [ ] Photo section renders correctly with the placeholder (before real photo is added)
+- [ ] Mobile responsive at 375px width — test the reference's dense multi-column sections collapse cleanly
+- [ ] `prefers-reduced-motion` respected
