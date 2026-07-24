@@ -10,6 +10,17 @@ import Companies from '@/pages/Companies';
 import Work from '@/pages/Work';
 import Contact from '@/pages/Contact';
 
+// New routes
+import Hire from '@/pages/Hire';
+import Courses from '@/pages/Courses';
+import EataLyft from '@/pages/EataLyft';
+import ZeeGo from '@/pages/ZeeGo';
+import SongtaiLife from '@/pages/SongtaiLife';
+import AJTech from '@/pages/AJTech';
+
+// Global components
+import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+
 function App() {
   const [location] = useLocation();
 
@@ -34,11 +45,21 @@ function App() {
               <Route path="/work" component={Work} />
               <Route path="/contact" component={Contact} />
               
+              {/* New Routes */}
+              <Route path="/hire" component={Hire} />
+              <Route path="/courses" component={Courses} />
+              <Route path="/companies/eatalyft" component={EataLyft} />
+              <Route path="/companies/zeego" component={ZeeGo} />
+              <Route path="/companies/songtai-life" component={SongtaiLife} />
+              <Route path="/companies/aj-tech" component={AJTech} />
+              
               {/* Fallback to Home if route not found */}
               <Route component={Home} />
             </Switch>
           </motion.div>
         </AnimatePresence>
+
+        <FloatingWhatsApp />
       </div>
       <Toaster />
     </TooltipProvider>

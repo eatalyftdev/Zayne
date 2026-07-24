@@ -1,9 +1,12 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
+import { Link } from 'wouter';
+import { ArrowRight } from 'lucide-react';
 import BrowserMockup from '@/components/BrowserMockup';
 
 const companies = [
   {
+    slug: "eatalyft",
     role: "Founder",
     name: "EataLyft",
     desc: "Multi-service logistics platform handling rides, food and parcel delivery, bus booking, e-commerce, hotels, and handyman services.",
@@ -11,9 +14,13 @@ const companies = [
       "Unified role architecture across 9+ user types",
       "Real-time driver dispatch and geo-tracking",
       "Seamless payment integrations for local markets"
-    ]
+    ],
+    accent: "bg-green-500",
+    border: "border-green-500",
+    text: "text-green-500"
   },
   {
+    slug: "zeego",
     role: "CTO",
     name: "ZeeGo",
     desc: "Logistics platform engineering. Bringing systems architecture and technical leadership to scale delivery operations.",
@@ -21,9 +28,13 @@ const companies = [
       "Systems architecture and technical roadmap",
       "Engineering team leadership and code quality",
       "High-availability infrastructure planning"
-    ]
+    ],
+    accent: "bg-blue-500",
+    border: "border-blue-500",
+    text: "text-blue-500"
   },
   {
+    slug: "songtai-life",
     role: "Brand & Social Media Manager",
     name: "Songtai Life International",
     desc: "Wellness network-marketing brand active across Cameroon. Focused on growth, positioning, and direct sales strategy.",
@@ -31,9 +42,13 @@ const companies = [
       "Brand strategy & visual identity alignment",
       "Social growth and community engagement",
       "Recruitment campaigns across Cameroon"
-    ]
+    ],
+    accent: "bg-amber-500",
+    border: "border-amber-500",
+    text: "text-amber-500"
   },
   {
+    slug: "aj-tech",
     role: "Founder & CEO",
     name: "AJ Tech Company Ltd",
     desc: "The studio behind all of it. A dedicated space for building and shipping African-first digital products end to end.",
@@ -41,7 +56,10 @@ const companies = [
       "Next.js, Firebase, and Supabase stack",
       "WhatsApp Cloud API integrations",
       "AI-assisted internal tooling and automations"
-    ]
+    ],
+    accent: "bg-purple-500",
+    border: "border-purple-500",
+    text: "text-purple-500"
   }
 ];
 
@@ -90,7 +108,7 @@ export default function Companies() {
                     {company.desc}
                   </p>
                   
-                  <ul className="space-y-4">
+                  <ul className="space-y-4 mb-8">
                     {company.bullets.map((bullet, j) => (
                       <li key={j} className="flex items-start gap-3 text-foreground">
                         <div className="mt-2 w-1.5 h-1.5 rounded-full bg-accent-green shrink-0" />
@@ -98,6 +116,10 @@ export default function Companies() {
                       </li>
                     ))}
                   </ul>
+
+                  <Link href={`/companies/${company.slug}`} className="inline-flex items-center justify-center h-12 px-6 font-medium bg-white border border-border text-foreground hover:bg-gray-50 hover:border-gray-300 transition-all rounded-full shadow-sm gap-2">
+                    Explore {company.name} <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </motion.div>
 
                 {/* Mockup Side */}
@@ -108,14 +130,17 @@ export default function Companies() {
                   transition={{ duration: 0.6 }}
                   className={isEven ? 'order-1 md:order-2' : 'order-1'}
                 >
-                  <BrowserMockup className="h-[400px] w-full border-gray-200" animateFloat={true}>
-                    <div className="absolute inset-0 flex items-center justify-center bg-gray-50">
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-gray-300 mb-2">{company.name}</div>
-                        <div className="text-sm text-gray-400 font-mono uppercase tracking-widest">System UI</div>
+                  <Link href={`/companies/${company.slug}`} className="block group">
+                    <BrowserMockup className={`h-[400px] w-full border-gray-200 transition-shadow duration-300 group-hover:shadow-xl`} animateFloat={true}>
+                      <div className="absolute inset-0 flex items-center justify-center bg-gray-50 group-hover:bg-gray-100 transition-colors duration-300">
+                        <div className="text-center">
+                          <div className={`w-16 h-16 rounded-2xl ${company.accent} mx-auto mb-6 opacity-20 group-hover:opacity-40 transition-opacity blur-xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2`} />
+                          <div className="text-2xl font-bold text-gray-300 mb-2 relative z-10">{company.name}</div>
+                          <div className="text-sm text-gray-400 font-mono uppercase tracking-widest relative z-10">System UI</div>
+                        </div>
                       </div>
-                    </div>
-                  </BrowserMockup>
+                    </BrowserMockup>
+                  </Link>
                 </motion.div>
                 
               </div>
