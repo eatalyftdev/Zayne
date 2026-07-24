@@ -15,7 +15,7 @@ export default function FloatingWhatsApp() {
 
   if (!show && !shouldReduceMotion) return null;
 
-  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hi Zayne, I'd like to discuss a project")}`;
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hi Zayne Tech, I'd like to discuss a project")}`;
 
   return (
     <AnimatePresence>

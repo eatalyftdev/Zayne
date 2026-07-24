@@ -4,7 +4,7 @@ import CompanyLayout from '@/components/CompanyLayout';
 export default function AJTech() {
   return (
     <CompanyLayout
-      name="AJ Tech"
+      name="AJ TechCompany LTD"
       role="Founder & CEO"
       tagline="The studio that ships African-first products."
       description="The studio behind EataLyft and the engineering home base. AJ Tech builds and ships digital products designed specifically for African market realities — not adapting foreign templates after the fact, but building for the infrastructure, connectivity, and user behavior of Cameroon and West Africa from day one."

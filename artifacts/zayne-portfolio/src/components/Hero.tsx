@@ -36,7 +36,7 @@ export default function Hero() {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-green"></span>
             </span>
             <span className="font-mono text-[11px] font-medium tracking-wider text-secondary-foreground uppercase">
-              FOUNDER · CM-BDA · ACTIVE
+              FOUNDER · BUSINESS ADMIN · ACTIVE
             </span>
           </motion.div>
 

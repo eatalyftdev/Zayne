@@ -34,13 +34,13 @@ export default function Contact() {
               Email <ArrowRight className="w-4 h-4" />
             </a>
             <a 
-              href="#" 
+              href="mailto:ndanga.wilton.12@gmail.com" 
               className="inline-flex items-center justify-center h-12 px-8 font-medium border border-border text-foreground hover:bg-panel transition-colors duration-300 rounded-sm"
             >
               LinkedIn
             </a>
             <a 
-              href="#" 
+              href="https://cm.linkedin.com/in/wilton-ndanga-46224a242" 
               className="inline-flex items-center justify-center h-12 px-8 font-medium border border-border text-foreground hover:bg-panel transition-colors duration-300 rounded-sm"
             >
               GitHub
@@ -55,7 +55,7 @@ export default function Contact() {
           <div className="font-mono text-xs text-secondary-foreground uppercase tracking-widest flex items-center gap-3">
             <span>BAMENDA, CM</span>
             <span className="w-1 h-1 bg-accent-teal rounded-full"></span>
-            <span>05.9597° N, 10.1494° E</span>
+            <span>676 998 732</span>
           </div>
         </footer>
       </div>

@@ -7,22 +7,22 @@ const companies = [
     role: "Founder",
     name: "EataLyft",
     desc: "Multi-service logistics, delivery and mobility platform — rides, food and parcel delivery, bus booking, e-commerce, hotels, handyman services, and a WhatsApp/AI-driven creators hub. Based in Bamenda, Cameroon.",
-    link: "eatalyft.cm",
+    link: "Eatalyft",
     url: "https://eatalyft.cm"
   },
   {
     role: "CTO",
     name: "ZeeGo",
     desc: "Engineering leadership for one of Cameroon's larger logistics platforms — bringing the same architectural discipline built at EataLyft to a bigger operating surface.",
-    link: "Get in touch",
-    url: "#contact"
+    link: "ZeeGo",
+    url: "https://zeego.cm"
   },
   {
     role: "Brand & Social Media Manager",
     name: "Songtai Life International",
     desc: "Wellness network-marketing brand active across Cameroon. Brand strategy, growth campaigns, and recruitment content built for the Cameroon market specifically.",
     link: "Get in touch",
-    url: "#contact"
+    url: "https://songtai.netlify.app/"
   },
   {
     role: "Founder & CEO",

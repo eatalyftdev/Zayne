@@ -80,7 +80,7 @@ export default function About() {
               
               <div className="space-y-6 text-[1.1rem] leading-relaxed text-secondary-foreground">
                 <p>
-                  Zayne is a Cameroonian tech founder and full-stack operator building the infrastructure layer for how people move, eat, and transact across Cameroon. As <strong className="text-foreground font-semibold">founder of EataLyft</strong>, he leads a multi-service platform spanning rides, food and parcel delivery, bus booking, e-commerce, hotels, and handyman services — architected around a unified role-based system spanning users, vendors, drivers, agents, and admins.
+                  Wilton . A. NDANGA (Zayne) is a Cameroonian tech founder and full-stack operator building the infrastructure layer for how people move, eat, and transact across Cameroon. As <strong className="text-foreground font-semibold">founder of EataLyft</strong>, he leads a multi-service platform spanning rides, food and parcel delivery, bus booking, e-commerce, hotels, and handyman services — architected around a unified role-based system spanning users, vendors, drivers, agents, and admins.
                 </p>
                 <p>
                   As <strong className="text-foreground font-semibold">CTO at ZeeGo</strong>, he brings that same systems discipline to one of Cameroon's larger logistics platforms. At <strong className="text-foreground font-semibold">Songtai Life International</strong>, he manages brand and social media. Through <strong className="text-foreground font-semibold">AJ Tech Company Ltd</strong>, he builds and ships African-first digital products end to end — from Firebase and Next.js architecture to WhatsApp Cloud API integrations.
